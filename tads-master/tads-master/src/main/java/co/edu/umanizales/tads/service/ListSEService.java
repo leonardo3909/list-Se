@@ -13,25 +13,11 @@ public class ListSEService {
 
     public ListSEService() {
         kids = new ListSE();
-        kids.add(new Kid("123","Carlos",(byte)4,'M'));
-        kids.add(new Kid("256","Mariana",(byte)3,'F'));
-        kids.add(new Kid("789","Daniel",(byte)5,'M'));
-        kids.add(new Kid("967","Estefania",(byte)6,'F'));
-        kids.add(new Kid("987","Maria Jose",(byte)9,'F'));
-        kids.add(new Kid("145","Jaider",(byte)3,'M'));
-        kids.add(new Kid("197","Danna",(byte)2,'F'));
-        kids.add(new Kid("287","Leonardo",(byte)7,'M'));
 
     }
-/*
-    public Node getKids()
-    {
-        return kids.getHead();
-    }
 
-    public void invert(){
+   public void invert(){
         kids.invert();
     }
 
- */
 }

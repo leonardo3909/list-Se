@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 public class ListSE {
     private Node head;
+    private int size;
     /*
     Algoritmo de adicionar al final
     Entrada
@@ -36,6 +37,7 @@ public class ListSE {
         else {
             head = new Node(kid);
         }
+        size ++;
     }
 
     /* Adicionar al inicio
@@ -57,6 +59,7 @@ public class ListSE {
         else {
             head = new Node(kid);
         }
+        size++;
     }
 
     public void invert(){
@@ -90,51 +93,48 @@ public class ListSE {
         }
     }
 
-    public ListSE insertByKids(){
-        ListSE boys = new ListSE();
-        Node temp = head;
-        if (temp.getData().equals("boy")){
-            boys.add(temp.getData());
+    public void changeExtremes(){
+        if(this.head !=null && this.head.getNext() !=null)
+        {
+            Node temp = this.head;
+            while(temp.getNext()!=null)
+            {
+                temp = temp.getNext();
+            }
+            //temp está en el último
+            Kid copy = this.head.getData();
+            this.head.setData(temp.getData());
+            temp.setData(copy);
         }
-        else {
-            while (temp.getNext() != null){
-                if (temp.getNext().getData().equals("boy")){
-                    boys.add(temp.getData());
+
+    }
+
+    public int getCountKidsByLocationCode(String code){
+        int count =0;
+        if( this.head!=null){
+            Node temp = this.head;
+            while(temp != null){
+                if(temp.getData().getLocation().getCode().equals(code)){
+                    count++;
                 }
                 temp = temp.getNext();
             }
         }
-        return boys;
+        return count;
     }
 
-    public ListSE insert(){
-        ListSE girls = new ListSE();
-        Node temp2 = head;
-        if (temp2.getData().equals("girl")){
-            girls.add(temp2.getData());
-        }
-        else {
-            while (temp2.getNext() != null){
-                if (temp2.getNext().getData().equals("girl")){
-                    girls.add(temp2.getData());
+    public int getCountKidsByDeptoCode(String code){
+        int count = 0;
+        if(this.head!=null){
+            Node temp = this.head;
+            while (temp != null){
+                if (temp.getData().getLocation().getCode().substring(0,5).equals(code)){
+                    count++;
                 }
-                temp2 = temp2.getNext();
+                temp = temp.getNext();
             }
         }
-        return girls;
-    }
-
-    public ListSE insertTotal(){
-        if(head !=null){
-            ListSE listCp = new ListSE();
-            Node temp3 = this.head;
-            while(temp3 != null){
-                listCp.addToStart(temp3.getData());
-                temp3 = temp3.getNext();
-            }
-            this.head = listCp.getHead();
-        }
-        return insert().insertByKids();
+        return count;
     }
 
 
