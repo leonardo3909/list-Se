@@ -1,5 +1,6 @@
 package co.edu.umanizales.tads.controller.dto;
 
+import co.edu.umanizales.tads.model.GenderKid;
 import lombok.Data;
 
 @Data

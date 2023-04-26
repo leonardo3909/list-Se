@@ -62,17 +62,7 @@ public class ListSE {
         size++;
     }
 
-    public void invert(){
-        if(this.head !=null){
-            ListSE listCp = new ListSE();
-            Node temp = this.head;
-            while(temp != null){
-                listCp.addToStart(temp.getData());
-                temp = temp.getNext();
-            }
-            this.head = listCp.getHead();
-        }
-    }
+
 
     public void orderBoysToStart(){
         if(this.head !=null){
@@ -136,6 +126,131 @@ public class ListSE {
         }
         return count;
     }
+
+
+    public void invert() {
+        if (this.head != null) {
+            ListSE listCP = new ListSE();
+            Node temp = this.head;
+            while (temp != null) {
+                listCP.addToStart(temp.getData());
+                temp = temp.getNext();
+            }
+            this.head = listCP.getHead();
+        }
+    }
+
+    public void boyStartGirlsLast(){
+        ListSE listCopy = new ListSE();
+        Node temp = this.head;
+        while (temp != null){
+            if (temp.getData().getGender() == 'M'){
+                listCopy.add(temp.getData());
+            }
+            temp = temp.getNext();
+        }
+        temp = this.head;
+
+        while (temp != null){
+            if (temp.getData().getGender() == 'F'){
+                listCopy.add((temp.getData()));
+            }
+            temp = temp.getNext();
+        }
+        this.head = listCopy.getHead();
+    }
+
+    public void boyThenGirl(){
+        ListSE listMale = new ListSE();
+        ListSE listFemale = new ListSE();
+        Node temp = this.head;
+        while (temp != null){
+            if(temp.getData().getGender()=='M'){
+                listMale.add(temp.getData());
+            }
+            if(temp.getData().getGender()=='F'){
+                listFemale.add(temp.getData());
+            }
+            temp = temp.getNext();
+        }
+
+        ListSE sortedList = new ListSE();
+        Node maleNode = listMale.getHead();
+        Node femaleNode = listFemale.getHead();
+        while (maleNode != null || femaleNode != null){
+            if (maleNode != null){
+                sortedList.add(maleNode.getData());
+                maleNode = maleNode.getNext();
+            }
+            if (femaleNode != null){
+                sortedList.add(femaleNode.getData());
+                femaleNode = femaleNode.getNext();
+            }
+        }
+        this.head = sortedList.getHead();
+    }
+
+    public void deleteByAge (int age){
+        Node temp = head;
+        Node prev = null;
+        while (temp != null && temp.getData().getAge() != age){
+            prev = temp;
+            temp = temp.getNext();
+        }
+        if (temp != null){
+            if (prev == null){
+                head = temp.getNext();
+            }
+            else{
+                prev.setNext(temp.getNext());
+            }
+        }
+    }
+
+    public float averageAge(){
+
+        if (head != null){
+            Node temp = head;
+            int contador = 0;
+            int ages = 0;
+            while(temp.getNext() != null) {
+                contador++;
+                ages = ages + temp.getData().getAge();
+                temp = temp.getNext();
+            }
+            return (float) ages/contador;
+        }
+        else{
+            return (float) 0;
+        }
+    }
+
+    public void sendBottomByLetter(char initial){
+
+
+        ListSE sendBottom = new ListSE();
+        Node temp = this.head;
+
+        while (temp != null){
+            if (temp.getData().getName().charAt(0) != Character.toUpperCase(initial)){
+                sendBottom.add(temp.getData());
+            }
+            temp = temp.getNext();
+        }
+
+        temp = this.head;
+
+        while (temp != null){
+            if (temp.getData().getName().charAt(0) == Character.toUpperCase(initial)){
+                sendBottom.add(temp.getData());
+            }
+            temp = temp.getNext();
+        }
+
+        this.head = sendBottom.getHead();
+    }
+
+
 
 
 

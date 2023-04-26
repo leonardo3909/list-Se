@@ -14,10 +14,7 @@ public class ListSEService {
     public ListSEService() {
         kids = new ListSE();
 
-    }
+    }}
 
-   public void invert(){
-        kids.invert();
-    }
 
-}
+
